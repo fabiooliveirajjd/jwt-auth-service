@@ -35,6 +35,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 		// PEGA O TOKEN DE DENTRO DA REQUISIÇÃO
 		String token = obterToken(request);
 		// PEGA O ID DO USUARIO QUE ESTA DENTRO DO TOKEN
+
 		Optional<Long> id = jwtService.obterIdDoUsuario(token);
 		// SE NÃO ACHOU O ID É PORQUE O USUÁRIO MANDOU O TOKEN INCORRETO
 		if (!id.isPresent()) {
