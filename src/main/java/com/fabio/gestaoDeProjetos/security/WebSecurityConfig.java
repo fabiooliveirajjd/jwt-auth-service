@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity //AQUI INFORMO QUE É UMA CLASSE SE GURANÇA DO WEB SECURITY
+@EnableWebSecurity //AQUI INFORMO QUE É UMA CLASSE DE SEGURANÇA DO WEB SECURITY
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDatailsService customUserDatailsService;

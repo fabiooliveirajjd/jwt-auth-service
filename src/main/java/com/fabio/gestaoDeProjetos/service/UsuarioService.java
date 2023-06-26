@@ -1,24 +1,39 @@
 package com.fabio.gestaoDeProjetos.service;
 
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fabio.gestaoDeProjetos.entity.Usuario;
 import com.fabio.gestaoDeProjetos.repository.UsuarioRepository;
+import com.fabio.gestaoDeProjetos.security.JWTService;
+import com.fabio.gestaoDeProjetos.usuario.LoginResponse;
 
 @Service
 public class UsuarioService {
+ 
+	private static final String hederPrefix = "Bearer ";
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private JWTService jwtService;
+
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
 	public List<Usuario> obterTodos() {
 		return usuarioRepository.findAll();
@@ -47,4 +62,22 @@ public class UsuarioService {
 		// SALVA O USUÁRIO
 		return usuarioRepository.save(usuario);
 	}
+
+	public LoginResponse logar(String email, String senha) {
+
+		// AQUI QUE A AUTENTICAÇÃO ACONTECE AUTOMATICAMENTE
+		Authentication aunticacao = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(email, senha, Collections.emptyList()));
+		// AQUI PASSO A NOVA AUTENTICAÇÃO PARA O SPRING SECURITY
+		SecurityContextHolder.getContext().setAuthentication(aunticacao);
+		// AQUI GERO O TOKEN DE USUÁRIO PARA DEVOLVER ELE
+		// BEARER anfsdf328f745a4fv4f1av4fda4v5v5fad5vfdabnhgmuiukiu5111
+		String token = hederPrefix + jwtService.gerarToken(aunticacao);
+
+		Usuario usuario = usuarioRepository.findByEmail(email).get();
+
+		return new LoginResponse(token, usuario);
+
+	}
+
 }
