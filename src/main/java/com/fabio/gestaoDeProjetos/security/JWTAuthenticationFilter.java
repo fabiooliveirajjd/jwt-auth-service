@@ -2,7 +2,6 @@ package com.fabio.gestaoDeProjetos.security;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.InputMismatchException;
 import java.util.Optional;
 
 import javax.servlet.FilterChain;
@@ -38,22 +37,24 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
 		Optional<Long> id = jwtService.obterIdDoUsuario(token);
 		// SE NÃO ACHOU O ID É PORQUE O USUÁRIO MANDOU O TOKEN INCORRETO
-		if (!id.isPresent()) {
-			throw new InputMismatchException("token inválido");
+		if (id.isPresent()) {
+
+			// PEGO O USUARIO DO TOKEN PELO SEU ID
+			UserDetails usuario = customUserDatailsService.obterUsuarioPorId(id.get());
+
+			// NESSE PONTO VERIFICAMOS SE O USUARIO ESTÁ AUTENTICADO OU NÃO
+			// AQUI TAMBÉM PODERIAMOS VALIDAR AS PERMISSÕES
+			UsernamePasswordAuthenticationToken autenticacao = new UsernamePasswordAuthenticationToken(usuario, null,
+					Collections.emptyList());
+			// MUDA A AUTENTICAÇÃO PARA A PRÓPRIA REQUISIÇÃO
+			autenticacao.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+			// REPASSANDO A AUTENTICAÇÃO PARA O CONTEXTO DO SECURIT
+			// A PARTIR DE AGORA O SPRING TOMA CONTA DE TUDO PARA MIM
+			SecurityContextHolder.getContext().setAuthentication(autenticacao);
 		}
-		// PEGO O USUARIO DO TOKEN PELO SEU ID
-		UserDetails usuario = customUserDatailsService.obterUsuarioPorId(id.get());
-
-		// NESSE PONTO VERIFICAMOS SE O USUARIO ESTÁ AUTENTICADO OU NÃO
-		// AQUI TAMBÉM PODERIAMOS VALIDAR AS PERMISSÕES
-		UsernamePasswordAuthenticationToken autenticacao = new UsernamePasswordAuthenticationToken(usuario, null,
-				Collections.emptyList());
-		// MUDA A AUTENTICAÇÃO PARA A PRÓPRIA REQUISIÇÃO
-		autenticacao.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-		// REPASSANDO A AUTENTICAÇÃO PARA O CONTEXTO DO SECURIT
-		// A PARTIR DE AGORA O SPRING TOMA CONTA DE TUDO PARA MIM
-		SecurityContextHolder.getContext().setAuthentication(autenticacao);
+		// METODO PARA FILTRAR AS REGRAS DO USUÁRIO
+		filterChain.doFilter(request, response);
 	}
 
 	private String obterToken(HttpServletRequest request) {
