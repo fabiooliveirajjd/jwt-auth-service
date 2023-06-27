@@ -4,7 +4,10 @@ import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,10 +20,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@SequenceGenerator(name = "generator_usuario", sequenceName = "sequence_usuario", initialValue = 1, allocationSize = 1)
 public class Usuario implements UserDetails {
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
+	
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generator_usuario")
 	private Long id;
 
 	@Column(nullable = false)
