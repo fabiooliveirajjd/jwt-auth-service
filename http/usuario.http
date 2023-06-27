@@ -2,8 +2,18 @@ POST http://localhost:8080/api/usuarios
 Content-Type: application/json
 
 {
-"email": "fabio@mail.com",
-"nome": "fabio",
+"email":"jose@mail.com",
+"nome": "jose",
+"senha": "123456"
+}
+
+###
+
+POST http://localhost:8080/api/usuarios/login
+Content-Type: application/json
+
+{
+"email":"jose@mail.com",
 "senha": "123456"
 }
 

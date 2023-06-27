@@ -12,6 +12,8 @@ import javax.persistence.SequenceGenerator;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,43 +40,52 @@ private static final long serialVersionUID = 1L;
 	@Column(nullable = false)
 	private String senha;
 
+
+	//DAQUI PRA BAIXO É A IMPLEMENTAÇÃO DO USERDETAILS
 	@Override
+	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@JsonIgnore
 	public String getPassword() {
 		// TODO Auto-generated method stub
 		return senha;
 	}
 
 	@Override
+	@JsonIgnore
 	public String getUsername() {
 		// TODO Auto-generated method stub
 		return email;
 	}
 
 	@Override
+	@JsonIgnore
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
+	@JsonIgnore
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
+	@JsonIgnore
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
 		return true;
 	}
 
 	@Override
+	@JsonIgnore
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
