@@ -40,7 +40,7 @@ public class UsuarioController {
 		return usuarioService.adicionar(usuario);
 	}
 
-	@PostMapping("/login")
+	@PostMapping("/login")	
 	public LoginResponse logar(@RequestBody LoginRequest request) {
 		return usuarioService.logar(request.getEmail(), request.getSenha());
 	}
