@@ -20,8 +20,8 @@ import com.fabio.gestaoDeProjetos.usuario.LoginResponse;
 
 @Service
 public class UsuarioService {
- 
-	private static final String hederPrefix = "Bearer ";
+	//A VARIAVEL headerPrefix TEM QUE SER EXATAMENTE COM ESSE NOME.
+	private static final String headerPrefix = "Bearer ";
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -66,13 +66,13 @@ public class UsuarioService {
 	public LoginResponse logar(String email, String senha) {
 
 		// AQUI QUE A AUTENTICAÇÃO ACONTECE AUTOMATICAMENTE
-		Authentication aunticacao = authenticationManager
+		Authentication autenticacao = authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(email, senha, Collections.emptyList()));
 		// AQUI PASSO A NOVA AUTENTICAÇÃO PARA O SPRING SECURITY
-		SecurityContextHolder.getContext().setAuthentication(aunticacao);
+		SecurityContextHolder.getContext().setAuthentication(autenticacao);
 		// AQUI GERO O TOKEN DE USUÁRIO PARA DEVOLVER ELE
 		// BEARER anfsdf328f745a4fv4f1av4fda4v5v5fad5vfdabnhgmuiukiu5111
-		String token = hederPrefix + jwtService.gerarToken(aunticacao);
+		String token = headerPrefix + jwtService.gerarToken(autenticacao);
 
 		Usuario usuario = usuarioRepository.findByEmail(email).get();
 

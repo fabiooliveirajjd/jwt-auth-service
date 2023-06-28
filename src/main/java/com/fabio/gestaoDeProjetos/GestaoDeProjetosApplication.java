@@ -10,9 +10,4 @@ public class GestaoDeProjetosApplication {
         SpringApplication.run(GestaoDeProjetosApplication.class, args);
     }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-
 }

@@ -41,7 +41,7 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/login")
-	public LoginResponse login(@RequestBody LoginRequest request) {
+	public LoginResponse logar(@RequestBody LoginRequest request) {
 		return usuarioService.logar(request.getEmail(), request.getSenha());
 	}
 
