@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
 
     }
-
+    
     //MÉTODO PADRÃO: ESSE MÉTODO É OBRIGATÓRIO PARA CONSEGUIRMOS TRABALHAR COM AUTENTICAÇÃO NO LOGIN
     @Bean
     @Override
