@@ -24,8 +24,8 @@ public class JWTService {
 	 */
 	public String gerarToken(Authentication authenticateAction) {
 
-		// Tempo de expiração do token
-		int tempoExpiração = 500000;
+		// Tempo de expiração do token 1 hora
+		int tempoExpiração = 3600000;
 
 		// Data de expiração
 		Date dataExpiração = new Date(new Date().getTime() + tempoExpiração);
