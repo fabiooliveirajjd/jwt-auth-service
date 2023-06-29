@@ -46,7 +46,7 @@ public class UsuarioController {
 		return usuarioService.adicionar(usuario);
 	}
 
-	@PostMapping("/login")	
+	@PostMapping("/login")
 	public LoginResponse logar(@RequestBody LoginRequest request) {
 		return usuarioService.logar(request.getEmail(), request.getSenha());
 	}
@@ -55,11 +55,11 @@ public class UsuarioController {
 	@PostMapping("/email")
 	public String enviarEmail (@RequestBody MensagemEmail email){
 		try {
-			 servicoEmail.enviar(email);
-			 return "Email enviado com sucesso!"
+			servicoEmail.enviar(email);
+			return "Email enviado com sucesso!";
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "Falha ao enviar o email!"
+			return "Falha ao enviar o email!";
 		}
 	}
 

@@ -70,7 +70,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          * AQUI VAMOS INFORMAR AS ROTAS QUE NÃO VÃO PRECISAR DE AUTENTICAÇÃO
          */
                 //INFORMA QUE TODOS PODEM ACESSAR, NÃO PRECISAM DE AUTENTICAÇÃO
-                .antMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/login")
+                .antMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/login", "/api/usuarios/email")
                 .permitAll()
                 //DIGO QUE AS DEMAIS REQUISIÇÕES DEVEM SER REQUISITADAS
                 .anyRequest()

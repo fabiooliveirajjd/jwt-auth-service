@@ -17,3 +17,16 @@ Content-Type: application/json
 "senha": "123456"
 }
 
+###
+
+POST http://localhost:8080/api/usuarios/email
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJbXSIsImlhdCI6MTY4ODA2NDUyOCwiZXhwIjoxNjg4MDY4MTI4fQ.3k8JbMwwrcAzmkjnYzR1UHJuYI2Yj0htBOG68mugqOM
+
+{
+  "assunto": "Testando envio de email",
+  "mensagem": "<h1> EMAIL ENVIADO!!!!!</h1>",
+  "remetente": "fabiooliveirajjd@gmail.com",
+  "destinatarios": "fabiooliveirajjd@gmail.com
+  
+}
