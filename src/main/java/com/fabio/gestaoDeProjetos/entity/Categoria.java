@@ -27,6 +27,7 @@ public class Categoria {
 	private Long id;
 
 	private String descricao;
+	//UMA CATEGORIA PODE ESTAR EM MUITOS EVENTOS
 	//SETA A CATEGORIA QUE ESTÁ NA CLASSE ENVENTO 
 	//private Categoria categoria;
 	@ManyToMany(mappedBy = "categoria")

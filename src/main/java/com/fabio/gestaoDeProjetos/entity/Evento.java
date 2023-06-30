@@ -30,7 +30,7 @@ public class Evento {
 	private String descricao;
 
 	private Date dataHora;
-	// MUITOS EVENTOS PARA UMA CATEGORIA (TIPO UNIDIRECIONAL)
+	// MUITOS EVENTOS PODE TER A MESMA CATEGORIA (TIPO UNIDIRECIONAL)
 	@ManyToOne
 	@JoinColumn(name = "idCategoria")
 	// DEFINE A ENTIDADE MANDATÓRIA EM RELAÇÃO A SERIALIZAÇÃO
