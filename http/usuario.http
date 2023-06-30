@@ -24,9 +24,9 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJbXSIsImlhdCI6MTY4ODA2NDUyOCwiZXhwIjoxNjg4MDY4MTI4fQ.3k8JbMwwrcAzmkjnYzR1UHJuYI2Yj0htBOG68mugqOM
 
 {
-  "assunto": "Testando envio de email",
-  "mensagem": "<h1> EMAIL ENVIADO!!!!!</h1>",
+  "assunto": "Confirmação de Conta",
+  "mensagem": "<div style=\"background-color: #FFB86F; padding: 20px; border-radius: 20px; text-align: center; margin: 30px;\"><h1 style=\"color: #FFFFFF; font-size: 30px;\">PARABÉNS PESSOA LEGAL!</h1><p style=\"color: #FFFFFF; font-size: 18px;\">Você recebeu um e-mail de confirmação de conta!</p><p style=\"color: #FFFFFF; font-size: 18px;\">Obrigado por se inscrever em nosso aplicativo.</p><p style=\"color: #FFFFFF; font-size: 18px;\">Aqui estão algumas informações importantes:</p><ul style=\"color: #FFFFFF; text-align: center; list-style: none; padding: 0;\"><li><strong>Nome:</strong> <span style=\"font-weight: bold;\">Fábio Santos Oliveira</span></li><li><strong>E-mail:</strong> <span style=\"font-weight: bold;\">fabiooliveirajjd@gmail.com</span></li><li><strong>Data de registro:</strong> <span style=\"font-weight: bold;\">29 de junho de 2023</span></li></ul><p style=\"color: #FFFFFF; font-size: 18px;\">Esperamos que você aproveite todas as novidades e atualizações que enviaremos para sua caixa de entrada.</p><p style=\"color: #FFFFFF; font-size: 18px;\">Atenciosamente,<br>Equipe do Projeto JWT com serviços de E-MAIL</p></div>",
   "remetente": "fabiooliveirajjd@gmail.com",
-  "destinatarios": "fabiooliveirajjd@gmail.com
-  
+  "destinatarios": ["fabiooliveirajjd@gmail.com"]
 }
+
