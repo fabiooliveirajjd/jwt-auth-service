@@ -1,6 +1,6 @@
 package com.fabio.gestaoDeProjetos.entity;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,9 +27,8 @@ public class Evento {
 
 	private String descricao;
 
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate dataHora;
-
+	private Date dataHora;
+	//MUITOS EVENTOS PARA UMA CATEGORIA (TIPO UNIDIRECIONAL)
 	@ManyToOne
 	@JoinColumn(name = "idCategoria")
 	private Categoria categoria;

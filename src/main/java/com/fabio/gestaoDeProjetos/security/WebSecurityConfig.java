@@ -68,11 +68,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         /**
          * DAQUI PRA BAIXO É ONDE NÓS VAMOS VAZER NOSSOAS VALIDAÇÕES
          * AQUI VAMOS INFORMAR AS ROTAS QUE NÃO VÃO PRECISAR DE AUTENTICAÇÃO
-         */
-                //INFORMA QUE TODOS PODEM ACESSAR, NÃO PRECISAM DE AUTENTICAÇÃO
-                .antMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/login", "/api/usuarios/email")
+         */			
+                //INFORMA QUEM PODE ACESSAR SEM AUTENTICAÇÃO
+                .antMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/login", "/api/usuarios/email", "/api/categorias", "/api/eventos")
                 .permitAll()
-                //DIGO QUE AS DEMAIS REQUISIÇÕES DEVEM SER REQUISITADAS
+                .antMatchers(HttpMethod.GET, "/api/categorias", "/api/eventos")
+                .permitAll()
                 .anyRequest()
                 .authenticated();
                 //AQUI EU INFORMO QUE ANTES DE QUALQUER REQUISIÇÃO HTTP, O SISTEMA DEVE USAR O NOSSO FILTRO JWT jwtAuthenticationFilter
