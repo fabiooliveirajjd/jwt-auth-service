@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Evento {
-
+	//CLASSE DO LADO MANDATÓRIO DE RELACIONAMENTO DE TABELA
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idEvento")
@@ -28,9 +30,11 @@ public class Evento {
 	private String descricao;
 
 	private Date dataHora;
-	//MUITOS EVENTOS PARA UMA CATEGORIA (TIPO UNIDIRECIONAL)
+	// MUITOS EVENTOS PARA UMA CATEGORIA (TIPO UNIDIRECIONAL)
 	@ManyToOne
 	@JoinColumn(name = "idCategoria")
+	// DEFINE A ENTIDADE MANDATÓRIA EM RELAÇÃO A SERIALIZAÇÃO
+	@JsonManagedReference
 	private Categoria categoria;
 
 }
