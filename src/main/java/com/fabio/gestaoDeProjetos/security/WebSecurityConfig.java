@@ -71,9 +71,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          */			
                 //INFORMA QUEM PODE ACESSAR SEM AUTENTICAÇÃO
                 .antMatchers(HttpMethod.POST, "/api/usuarios", "/api/usuarios/login", "/api/usuarios/email", "/api/categorias", "/api/eventos"
-                		, "/api/pessoas", "/api/avaliacaos")
+                		, "/api/pessoas", "/api/avaliacaos", "/api/pizzas", "/api/ingredientes")
                 .permitAll()
-                .antMatchers(HttpMethod.GET, "/api/categorias", "/api/eventos", "/api/pessoas", "/api/avaliacaos")
+                .antMatchers(HttpMethod.GET, "/api/categorias", "/api/eventos", "/api/pessoas", "/api/avaliacaos", "/api/pizzas", "/api/ingredientes")
                 .permitAll()
                 .anyRequest()
                 .authenticated();

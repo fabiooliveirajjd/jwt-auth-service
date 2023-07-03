@@ -1,11 +1,13 @@
 package com.fabio.gestaoDeProjetos.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -17,17 +19,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pessoa {
-	
+public class Ingrediente {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idPessoa")
+	@Column(name = "idIngrediente")
 	private Long id;
-	
-	private String nome;
-	
-	@OneToOne(mappedBy = "pessoa")
-	@JsonBackReference //TRÁS A PESSOA MAS NÃO TRAS A AVALIZÇÃO
-	private Avaliacao avaliacao;
 
+	private String descricao;
+	// SÓ MAPEIA POR SE TRATAR DA ENTIDADE SECUNDÁRIA DO RELACIONAMENTO
+	@ManyToMany(mappedBy = "ingredientes")
+	@JsonBackReference
+	private List<Pizza> pizzas;
 }

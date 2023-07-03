@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor 
 public class Avaliacao {
 	
+	//CLASSE MANDATÓRIA
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +31,9 @@ public class Avaliacao {
 	
 	//RELACIONAMENTO 1:1 PODE SER COLOCADO EM QUALQUER TABELA QUE VAI FUNCIONAR
 	@OneToOne
+	//FAZ O VÍNCULO
 	@JoinColumn(name = "idPessoa")
+	@JsonManagedReference
 	private Pessoa pessoa;
 
 }
